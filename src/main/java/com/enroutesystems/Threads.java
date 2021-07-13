@@ -10,16 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class Threads {
-    private Ant ant;
-
-
-    public Ant getAnt() {
-        return ant;
-    }
-
-    public void setAnt(Ant ant) {
-        this.ant = ant;
-    }
 
     public static synchronized void printTextOnLogger(String text){
         log.info(text);
