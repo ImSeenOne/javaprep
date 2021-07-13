@@ -1,5 +1,10 @@
 package com.enroutesystems;
 
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+
+@Slf4j
 public class Dog extends Animal {
     private String plateNumber;
     private String name;
@@ -27,24 +32,35 @@ public class Dog extends Animal {
     }
 
     public String toString() {
-        return "Dog object: [\nname: "+ this.getName()+", \nplateNumber: "+ this.getPlateNumber()+", \nheight: "+ this.getHeight()+", \nweight: "+ this.getWeight()+", \nlegs: "+ this.getLegs()+", \nregularName: "+ this.getRegularName()+", \nspecies: "+ this.getSpecies()+"]";
+        return "Dog object: [name: "+ this.getName()+", plateNumber: "+ this.getPlateNumber()+", height: "+ this.getHeight()+", weight: "+ this.getWeight()+", legs: "+ this.getLegs()+", regularName: "+ this.getRegularName()+", species: "+ this.getSpecies()+"]";
     }
 
     public static void main (String args[]){
         Dog firulais = new Dog("SFT123", "Firulais", 50, 25,4,"Perro", "Canis familiaris Linnaeus");
 
-        System.out.println(firulais.toString());
+        assert firulais instanceof Dog: String.format(firulais.getName() + " is NOT an instance of a Dog()");
+
+        log.info("Firulais info: " + firulais.toString());
+
+        ArrayList<Dog> dogs = new ArrayList<>();
+        int i = 0;
+        /**
+         * I know I cod use an iterator, but I decided to use this way in order to use the keywords
+         */
+        do {
+            i++;
+            if(i == 3) {
+                log.info("Ayye, I hate the number three, let's not create the 3rd dog.");
+                continue;
+            }
+            dogs.add(new Dog("GND-" + i, "Dog" + i, 50, 25,4,"Perro", "Canis familiaris Linnaeus"));
+
+            log.info("\'i\' value: "+i);
+        } while(dogs.size() < 5);
+
+        log.info(dogs.toString());
     }
 
-    /**
-     * 	assert	break	case
-     * 	continue	default
-     * double	do	else	enum
-     * 	instanceof		long
-     * native	new	null	private	protected
-     * short	strictfp
-     * 	synchronized		throw	throws	transient
-     * 			volatile	while
-     */
+
 
 }

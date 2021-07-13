@@ -1,6 +1,9 @@
 package com.enroutesystems;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Random;
+
 
 public interface IAnimal {
     public String eat(boolean isEating);
@@ -20,6 +23,9 @@ public interface IAnimal {
         } catch (Error e) {
             System.err.println(e);
         } finally {
+            // I wanted to use log.info but it cannot be used on interfaces, so
+            // I found this as a solution, because it is mandatory to use this
+            // keywords
             System.out.println("Signature process was initialized.");
         }
         return sign;

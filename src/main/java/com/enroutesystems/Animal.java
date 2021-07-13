@@ -5,7 +5,7 @@ package com.enroutesystems;
 public class Animal extends AnimalImpl{
     private boolean isAlive;
     private float height;
-    private float weight;
+    private double weight;
     private int legs;
 
     public Animal(float height, float weight, int legs, String regularName, String species) {
@@ -34,7 +34,7 @@ public class Animal extends AnimalImpl{
         this.height = height;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
