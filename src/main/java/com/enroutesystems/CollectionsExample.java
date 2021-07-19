@@ -1,27 +1,30 @@
 package com.enroutesystems;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 
+@Slf4j
 public class CollectionsExample {
 
     public synchronized void print(int n){
         for(int i=1;i<=5;i++){
-            System.out.println(n*i);
+            log.info(Integer.toString(n*i));
             try{
                 Thread.sleep(400);
-            }catch(Exception e){System.out.println(e);}
+            }catch(Exception e){log.error(e.toString());}
         }
 
     }
 
     public synchronized void isEven(int n) {
         String word = (n % 2 == 0) ? "" : "not ";
-        System.out.println("The number " + n + " is " + word + "even");
+        log.info("The number " + n + " is " + word + "even");
     }
 
     public synchronized void higherThan100(int n) {
         String word = (n > 100) ? "" : "not ";
-        System.out.println("The number " + n + " is " + word + "greater than 100");
+        log.info("The number " + n + " is " + word + "greater than 100");
     }
 }
 
@@ -50,108 +53,110 @@ class Thread2 extends Thread{
     }
 }
 
+@Slf4j
 class TestExample {
     public static void main (String args[]) {
 
         /**
          * java.util.Collections.unmodifiablelList() Example
          */
-        System.out.println("Testing \'.unmodifiableList()\':");
+        log.info("Testing \'.unmodifiableList()\':");
         List<String> list = new ArrayList<>();
         Collections.addAll(list, "Sanda", "MuayThai", "KickBoxing", "JiuJitsu");
         List<String> unmodifiableList = Collections.unmodifiableList(list);
-        System.out.println("\tUnmodifiable List: " + unmodifiableList);
-        System.out.println("\tAdding element to an already created unmodifable list...");
+        log.info("\tUnmodifiable List: " + unmodifiableList);
+        log.info("\tAdding element to an already created unmodifable list...");
         list.add("Box");
-        System.out.println("\tPrinting unmodifiable list after trying to add new element: " + unmodifiableList);
+        log.info("\tPrinting unmodifiable list after trying to add new element: " + unmodifiableList);
 
-        System.out.println("\n============================================================\n");
+        log.info("\n============================================================\n");
         /**
          * unomdifiableMap() Example
          */
 
-        System.out.println("Testing \'.unmodifiableMap()\'");
+        log.info("Testing \'.unmodifiableMap()\'");
         HashMap<String,String> map = new HashMap<String,String>();
         map.put("1", "KIA");
         map.put("2", "Volkswagen");
         map.put("3", "Ford");
         map.put("4", "Chevrolet");
-        System.out.println("\tInitial collection: " + map);
+        log.info("\tInitial collection: " + map);
 
         Map<String,String> unmodifiableMap = Collections.unmodifiableMap(map);
 
-        System.out.println("\tUnmodifiable Map: " + unmodifiableMap);
+        log.info("\tUnmodifiable Map: " + unmodifiableMap);
 
         map.put("5", "Nissan");
-        System.out.println("\tUnmodifiable Map after adding one more element to map: " + unmodifiableMap);
+        log.info("\tUnmodifiable Map after adding one more element to map: " + unmodifiableMap);
 
-        System.out.println("\n============================================================\n");
+        log.info("\n============================================================\n");
         /**
          * unmodifiableSet() Example
          */
-        System.out.println("Testing \'.unmodifiableSet()\'");
+        log.info("Testing \'.unmodifiableSet()\'");
 
         Set<String> set = new TreeSet<>();
         Collections.addAll(set, "Pink Floyd", "The Beatles", "The Cure", "Led Zepellin", "Radiohead");
 
-        System.out.println("\tInitial Set: " + set);
+        log.info("\tInitial Set: " + set);
         Set<String> unmodifiableSet = Collections.unmodifiableSet(set);
 
-        System.out.println("\tUnmodifiable Set: " + unmodifiableSet);
+        log.info("\tUnmodifiable Set: " + unmodifiableSet);
 
-        System.out.println("\tAdding one more element to the initial set...");
+        log.info("\tAdding one more element to the initial set...");
         set.add("The Smiths");
 
-        System.out.println("\tUnmodifiable Set: " + unmodifiableSet);
+        log.info("\tUnmodifiable Set: " + unmodifiableSet);
 
-        System.out.println("\n============================================================\n");
+        log.info("\n============================================================\n");
         /**
          * Testing emptyList, emptyMap, emptySet
          */
-        System.out.println("Testing \'.emptyList()\'");
+        log.info("Testing \'.emptyList()\'");
         List<String> el = Collections.emptyList();
 
-        System.out.println("\tCreated empty immutable list: " + el);
-        System.out.println("\tTrying to add two items to emptyList...");
+        log.info("\tCreated empty immutable list: " + el);
+        log.info("\tTrying to add two items to emptyList...");
         try {
             el.add("A");
             el.add("B");
         } catch (UnsupportedOperationException e) {
-            System.err.println("\tCannot add items to an immutable list");
+            log.error("\tCannot add items to an immutable list");
         }
 
-        System.out.println("\n============================================================\n");
+        log.info("\n============================================================\n");
 
-        System.out.println("Testing \'.emptyMap()\'");
+        log.info("Testing \'.emptyMap()\'");
 
         Map<String, String> em = Collections.emptyMap();
 
-        System.out.println("\tCreated empty immutable map: " + em);
-        System.out.println("\tTrying to add two items to emptyMap...");
+        log.info("\tCreated empty immutable map: " + em);
+        log.info("\tTrying to add two items to emptyMap...");
         try {
             em.put("1","Another item");
         } catch (UnsupportedOperationException e) {
-            System.err.println("\tCannot add items to an immutable map");
+            log.error("\tCannot add items to an immutable map");
         }
 
-        System.out.println("\n============================================================\n");
+        log.info("\n============================================================\n");
 
-        System.out.println("Testing \'.emptySet()\'");
+        log.info("Testing \'.emptySet()\'");
 
         Set<String> es = Collections.emptySet();
 
-        System.out.println("\tCreated empty immutable set: " + es);
-        System.out.println("\tTrying to add two items to emptySet...");
+        log.info("\tCreated empty immutable set: " + es);
+        log.info("\tTrying to add two items to emptySet...");
         try {
             es.add("Random item");
         } catch (UnsupportedOperationException e) {
-            System.err.println("\tCannot add items to an immutable set");
+            log.error("\tCannot add items to an immutable set");
         }
-        System.out.println("\n============================================================\n");
+
+        log.info("\n============================================================\n");
         /**
          * Synchronized example
          */
-        System.out.println("Testing \'synchronized\':");
+        log.info("Testing \'synchronized\':");
         CollectionsExample ce = new CollectionsExample();
         Thread1 tOne = new Thread1(ce);
         Thread2 tTwo = new Thread2(ce);

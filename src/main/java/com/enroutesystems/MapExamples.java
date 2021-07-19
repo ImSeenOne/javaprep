@@ -1,7 +1,10 @@
 package com.enroutesystems;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.*;
 
+@Slf4j
 public class MapExamples {
     public static void main(String args[]) {
 
@@ -10,7 +13,7 @@ public class MapExamples {
          * this class doesn't keep the insertion order
          */
 
-        System.out.println("Hashmap Example: ");
+        log.info("Hashmap Example: ");
 
         HashMap<Integer,String> hashMap=new HashMap<Integer,String>();
         hashMap.put(1,"Horse");
@@ -18,22 +21,22 @@ public class MapExamples {
         hashMap.put(3,"Duck");
         hashMap.put(4,"Cow");
 
-        System.out.println("\tIterating with for bucle...");
+        log.info("\tIterating with for bucle...");
 
         for(Map.Entry m : hashMap.entrySet()){
-            System.out.println("\t\tKey is: " + m.getKey()+" & value is: " + m.getValue());
+            log.info("\t\tKey is: " + m.getKey()+" & value is: " + m.getValue());
         }
 
-        System.out.println("\tIterating with EntrySet Iterator");
+        log.info("\tIterating with EntrySet Iterator");
 
         Set entrySet = hashMap.entrySet();
 
         Iterator it = entrySet.iterator();
 
-        System.out.println("\t\tHashMap Pairs: ");
+        log.info("\t\tHashMap Pairs: ");
         while(it.hasNext()){
             Map.Entry me = (Map.Entry)it.next();
-            System.out.println("\t\tKey is: "+me.getKey() +
+            log.info("\t\tKey is: "+me.getKey() +
                     " & " +
                     " value is: "+me.getValue());
         }
@@ -41,7 +44,7 @@ public class MapExamples {
         /**
          * LinkedHashMap is an implementation of hashmap, but in this class, the insertion order is kept.
          */
-        System.out.println("LinkedHashMap Example:");
+        log.info("LinkedHashMap Example:");
         LinkedHashMap<Integer,String> lhm=new LinkedHashMap<Integer,String>();
 
         lhm.put(1,"Owl");
@@ -49,7 +52,7 @@ public class MapExamples {
         lhm.put(3,"Crow");
 
         for(Map.Entry m:lhm.entrySet()) {
-            System.out.println("\tKey is: "+m.getKey() +
+            log.info("\tKey is: "+m.getKey() +
                     " & " +
                     " value is: "+m.getValue());
         }
@@ -64,27 +67,27 @@ public class MapExamples {
         treemap.put(4,"Cow");
 
         for(Map.Entry m:treemap.entrySet()) {
-            System.out.println("\t\tKey is: "+m.getKey() +
+            log.info("\t\tKey is: "+m.getKey() +
                     " & " +
                     " value is: "+m.getValue());
         }
         treemap.remove(2);
-        System.out.println("Applying treemap.delete(2)");
+        log.info("Applying treemap.delete(2)");
         for(Map.Entry m:treemap.entrySet()) {
-            System.out.println("\t\tKey is: "+m.getKey() +
+            log.info("\t\tKey is: "+m.getKey() +
                     " & " +
                     " value is: "+m.getValue());
         }
 
-        System.out.println("\tTreemap.descendingMap: " + treemap.descendingMap());
+        log.info("\tTreemap.descendingMap: " + treemap.descendingMap());
 
         //Returns key-value pairs whose keys are less than or equal to the specified key.
-        System.out.println("\tTreemap.headMap: " + treemap.headMap(3,true));
+        log.info("\tTreemap.headMap: " + treemap.headMap(3,true));
 
         //Returns key-value pairs whose keys are greater than or equal to the specified key.
-        System.out.println("\tTreemap.tailMap: " + treemap.tailMap(3,true));
+        log.info("\tTreemap.tailMap: " + treemap.tailMap(3,true));
 
         //Returns key-value pairs exists in between the specified key.
-        System.out.println("\tTreemap.subMap: " + treemap.subMap(1, false, 3, true));
+        log.info("\tTreemap.subMap: " + treemap.subMap(1, false, 3, true));
     }
 }
