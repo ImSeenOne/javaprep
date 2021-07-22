@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.enroutesystems;
+package com.enroutesystems.keywordsExamples;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

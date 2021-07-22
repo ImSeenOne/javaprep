@@ -1,4 +1,4 @@
-package com.enroutesystems;
+package com.enroutesystems.keywordsExamples;
 
 public abstract class AnimalImpl implements IAnimal {
     private String species;
