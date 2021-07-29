@@ -11,8 +11,8 @@ public class JDBCExample {
 
          log.info("Initiliazing DB Connection");
 
-         Connection con = JDBCExample.openConnection("root","P4ssword!","enterprise");
-         PersonEntity person = new PersonEntity("Johnny", "Bravo");
+         Connection con = JDBCExample.openConnection("root","","enterprise");
+         PersonEntity person = new PersonEntity("Justin", "Odisho");
 
          if(JDBCExample.preparedInsert(person, con)) {
              log.info("Person succesfully created and persisted using prepared statement");
@@ -20,7 +20,7 @@ public class JDBCExample {
              log.error("Person not created nor saved");
          }
 
-         person.setName("Nikola"); person.setLastname("Tesla");
+         person.setName("Adolf"); person.setLastname("Hitler");
 
          if(JDBCExample.insert(person,con)) {
              log.info("Person successful (but insecurely) created and persisted using regular statement");
@@ -42,9 +42,9 @@ public class JDBCExample {
          try {
              ResultSetMetaData rsmd = rs.getMetaData();
              log.info("\tColumn quantity:");
-             log.info(Integer.toString(rsmd.getColumnCount()));
-             log.info("Column names:");
-             String columns = "";
+             log.info("\t\t" + Integer.toString(rsmd.getColumnCount()));
+             log.info("\tColumn names:");
+             String columns = "\t\t";
              for(int i = 1; i <= rsmd.getColumnCount(); i++) {
                  String comma = (i < rsmd.getColumnCount()) ? ", " : ".";
                  columns = columns + "`" + rsmd.getColumnLabel(i) + "`" + comma;
