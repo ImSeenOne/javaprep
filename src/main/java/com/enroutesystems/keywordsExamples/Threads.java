@@ -16,8 +16,11 @@ public class Threads {
     }
 
     public static class ThreadOne extends Thread{
+        @SneakyThrows
         public void run(){
+            Thread.sleep(7000);
             printTextOnLogger("Thread 1 is using the logger");
+
         }
     }
 
@@ -25,6 +28,7 @@ public class Threads {
         @SneakyThrows
         public void run(){
             try {
+                Thread.sleep(3000);
                 printTextOnLogger("Thread 2 is using the logger");
             } catch (Exception e) {
 
@@ -34,13 +38,14 @@ public class Threads {
     }
 
     public static void main(String[] args) throws Exception {
-        ThreadOne t1 = new ThreadOne();
-        ThreadTwo t2 = new ThreadTwo();
+        Thread[] threads = new Thread[]{new ThreadOne(), new ThreadTwo()};
+        for(Thread thread : threads) {
+            thread.start();
+        }
+        for(Thread threadd : threads) {
+            threadd.join();
+        }
+        log.info("Both threads have finished");
 
-        t1.start();
-        t2.start();
     }
-    /**
-     * 	Rest of words I couldn't know how to use: native transient volatile
-     */
 }
